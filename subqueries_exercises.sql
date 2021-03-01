@@ -23,3 +23,15 @@ WHERE emp_no IN (
     FROM dept_manager
     WHERE to_date > curdate()
     ) AND gender = 'F';
+
+SELECT dept_name
+FROM departments
+WHERE dept_no IN (
+    SELECT dept_no
+    FROM dept_manager
+    WHERE emp_no IN(
+        SELECT emp_no
+        FROM employees
+        WHERE gender = 'F'
+        ) AND to_date > curdate()
+    )
