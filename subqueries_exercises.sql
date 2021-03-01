@@ -34,4 +34,20 @@ WHERE dept_no IN (
         FROM employees
         WHERE gender = 'F'
         ) AND to_date > curdate()
+    );
+
+SELECT first_name, last_name
+FROM employees
+WHERE emp_no IN (
+    SELECT emp_no
+    FROM salaries
+    WHERE salary IN (
+        SELECT max(salary)
+        FROM salaries
+        )
     )
+limit 1;
+
+SELECT first_name, last_name
+FROM employees
+WHERE emp_no = 43624
