@@ -48,6 +48,11 @@ WHERE emp_no IN (
     )
 limit 1;
 
-SELECT first_name, last_name
-FROM employees
-WHERE emp_no = 43624
+SELECT CONCAT(e.first_name,' ', e.last_name), dept_name, CONCAT(man.first_name,' ', man.last_name)
+FROM employees as e
+JOIN dept_emp as de ON e.emp_no = de.emp_no
+JOIN departments as depart ON de.dept_no = depart.dept_no
+JOIN dept_manager dm on depart.dept_no = dm.dept_no
+JOIN employees man on dm.emp_no = man.emp_no
+WHERE de.to_date >curdate()
+  AND dm.to_date > curdate()
