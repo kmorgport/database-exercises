@@ -31,6 +31,3 @@ JOIN employees as e on dm.emp_no = e.emp_no
 JOIN salaries s on e.emp_no = s.emp_no
 WHERE dm.to_date >CURRENT_DATE and s.to_date > CURRENT_DATE
 ORDER BY d.dept_name
-
-SELECT CONCAT(e.first_name, ' ', e.last_name), d.dept_name AS 'Department Name',CONCAT(man.first_name,' ',man.last_name)
-FROM
